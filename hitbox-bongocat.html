@@ -1,0 +1,207 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Arcade-Bongo-Cat</title>
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .calibration-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    
+    .calibration-content {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+    
+    .button-highlight {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #333;
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: #4CAF50;
+      transition: width 0.3s ease;
+    }
+    
+    .skip-button {
+      background-color: #666;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    .skip-button:hover {
+      background-color: #888;
+    }
+    
+    .calibration-highlight {
+      box-shadow: 0 0 30px 10px #ff6b6b, 0 0 10px 2px #fff;
+      border-radius: 12px;
+      z-index: 9999 !important;
+      position: relative !important;
+      border: 6px solid yellow !important;
+      transition: box-shadow 0.2s;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Calibration Overlay -->
+  <div id="calibration-overlay" class="calibration-overlay calibration-overlay-bg">
+    <div class="calibration-content">
+      <h1>Controller Calibration</h1>
+      <p>Let's set up your leverless controller! I'll highlight each button and you press the corresponding button on your controller.</p>
+      <div id="calibration-schematic-wrapper" style="position: relative; width: 500px; height: 250px; margin: 0 auto;">
+        <svg id="hitbox-calibration-svg" width="500" height="250" viewBox="0 0 500 250" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+          <!-- Directional buttons (real hitbox layout) -->
+          <circle cx="90" cy="100" r="24" stroke="#b00" stroke-width="4" fill="#f44"/><!-- Left -->
+          <circle cx="140" cy="80" r="24" stroke="#b00" stroke-width="4" fill="#f44"/><!-- Down -->
+          <circle cx="190" cy="100" r="24" stroke="#b00" stroke-width="4" fill="#f44"/><!-- Right -->
+          <circle cx="245" cy="180" r="32" stroke="#b00" stroke-width="4" fill="#f44"/><!-- Up (bigger, further down and left) -->
+          <!-- Action buttons (2x4 grid, white) -->
+          <circle cx="260" cy="60" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 1 -->
+          <circle cx="300" cy="60" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 2 -->
+          <circle cx="340" cy="60" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 3 -->
+          <circle cx="380" cy="60" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 4 -->
+          <circle cx="260" cy="110" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 5 -->
+          <circle cx="300" cy="110" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 6 -->
+          <circle cx="340" cy="110" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 7 -->
+          <circle cx="380" cy="110" r="20" stroke="#222" stroke-width="4" fill="#fff"/><!-- 8 -->
+          <g id="calibration-highlight-group"></g>
+        </svg>
+      </div>
+      <div id="current-button" class="button-highlight">Ready to start...</div>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+      </div>
+      <p id="progress-text">0 of 12 buttons mapped</p>
+      <button id="skip-calibration" class="skip-button">Skip Calibration</button>
+    </div>
+  </div>
+
+  <!-- Hitbox illustration and buttons -->
+  <div id="hitbox-container" style="position: relative; width: 612px; height: 354px; margin: 0 auto;">
+    <img src="resources/img/bongocat/base/bg.png" style="width: 100%; height: 100%; display: block;">
+    <div id="button1" class="invisible">
+      <img src="resources/img/bongocat/base/button1.png" alt="" srcset="">
+    </div>
+    <div id="button2" class="invisible">
+      <img src="resources/img/bongocat/base/button2.png" alt="" srcset="">
+    </div>
+    <div id="button3" class="invisible">
+      <img src="resources/img/bongocat/base/button3.png" alt="" srcset="">
+    </div>
+    <div id="button4" class="invisible">
+      <img src="resources/img/bongocat/base/button4.png" alt="" srcset="">
+    </div>
+    <div id="button5" class="invisible">
+      <img src="resources/img/bongocat/base/button5.png" alt="" srcset="">
+    </div>
+    <div id="button6" class="invisible">
+      <img src="resources/img/bongocat/base/button6.png" alt="" srcset="">
+    </div>
+    <div id="button7" class="invisible">
+      <img src="resources/img/bongocat/base/button7.png" alt="" srcset="">
+    </div>
+    <div id="button8" class="invisible">
+      <img src="resources/img/bongocat/base/button8.png" alt="" srcset="">
+    </div>
+
+    <!-- Directional overlays -->
+    <div id="up" class="invisible">
+      <img src="resources/img/bongocat/base/1.png" alt="" srcset="">
+    </div>
+    <div id="down" class="invisible">
+      <img src="resources/img/bongocat/base/3.png" alt="" srcset="">
+    </div>
+    <div id="left" class="invisible">
+      <img src="resources/img/bongocat/base/0.png" alt="">
+    </div>
+    <div id="right" class="invisible">
+      <img src="resources/img/bongocat/base/2.png" alt="">
+    </div>
+
+    <!-- Left hand hitbox overlays -->
+    <div id="left0" class="invisible">
+      <img src="resources/img/bongocat/left/left0.png" alt="" srcset="">
+    </div>
+    <div id="left1" class="invisible">
+      <img src="resources/img/bongocat/left/left1.png" alt="" srcset="">
+    </div>
+    <div id="left2" class="invisible">
+      <img src="resources/img/bongocat/left/left1.png" alt="" srcset="">
+    </div>
+    <div id="left3" class="invisible">
+      <img src="resources/img/bongocat/left/left2.png" alt="" srcset="">
+    </div>
+    <div id="leftup" class="invisible">
+      <img src="resources/img/bongocat/left/leftup.png" alt="" srcset="">
+    </div>
+
+    <!-- Reset and Config buttons (top-right corner) -->
+    <div style="position: absolute; top: 10px; right: 10px; z-index: 1000; display: flex; gap: 6px;">
+      <div id="reset-button" style="background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Reset</div>
+      <div id="download-config" style="background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Download Config</div>
+      <label for="upload-config" style="background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px; margin: 0;">
+        Upload Config
+        <input id="upload-config" type="file" accept="application/json" style="display: none;">
+      </label>
+    </div>
+
+    <!-- Right hand arm overlays -->
+    <div id="arm1" class="invisible"><img src="resources/img/bongocat/arms/arm 1.png" alt=""></div>
+    <div id="arm2" class="invisible"><img src="resources/img/bongocat/arms/arm 2.png" alt=""></div>
+    <div id="arm3" class="invisible"><img src="resources/img/bongocat/arms/arm 3.png" alt=""></div>
+    <div id="arm4" class="invisible"><img src="resources/img/bongocat/arms/arm 4.png" alt=""></div>
+    <div id="arm5" class="invisible"><img src="resources/img/bongocat/arms/arm 5.png" alt=""></div>
+    <div id="arm6" class="invisible"><img src="resources/img/bongocat/arms/arm 6.png" alt=""></div>
+    <div id="arm7" class="invisible"><img src="resources/img/bongocat/arms/arm 7.png" alt=""></div>
+    <div id="arm8" class="invisible"><img src="resources/img/bongocat/arms/arm 8.png" alt=""></div>
+    <div id="rightUp" class="invisible">
+      <img src="resources/img/bongocat/right/right0.png" alt="" srcset="">
+    </div>
+  </div>
+</body>
+
+<script src="hitbox-controller.js"></script>
+
+</html> 
