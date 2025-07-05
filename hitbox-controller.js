@@ -23,6 +23,10 @@ const state = {
   lastCalibrationInput: null,
   lastCalibrationAxes: [],
   restingCalibrationAxes: [],
+  // Auto-hide functionality
+  lastMouseMove: Date.now(),
+  hideTimeout: null,
+  buttonsVisible: true,
 };
 
 /**
@@ -93,6 +97,56 @@ const buttonPositionIndex = {
 function getGamepad() {
   const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
   return gamepads[0] || null;
+}
+
+/**
+ * Handle mouse movement to reset auto-hide timer
+ */
+function handleMouseMove() {
+  state.lastMouseMove = Date.now();
+  
+  // Clear existing timeout
+  if (state.hideTimeout) {
+    clearTimeout(state.hideTimeout);
+  }
+  
+  // Show config buttons if they were hidden
+  if (!state.buttonsVisible) {
+    showConfigButtons();
+  }
+  
+  // Set new timeout to hide after 5 seconds
+  state.hideTimeout = setTimeout(() => {
+    hideConfigButtons();
+  }, 5000);
+}
+
+/**
+ * Show config buttons
+ */
+function showConfigButtons() {
+  state.buttonsVisible = true;
+  const resetButton = document.getElementById('reset-button');
+  const downloadConfig = document.getElementById('download-config');
+  const uploadConfig = document.querySelector('label[for="upload-config"]');
+  
+  if (resetButton) resetButton.style.opacity = '1';
+  if (downloadConfig) downloadConfig.style.opacity = '1';
+  if (uploadConfig) uploadConfig.style.opacity = '1';
+}
+
+/**
+ * Hide config buttons
+ */
+function hideConfigButtons() {
+  state.buttonsVisible = false;
+  const resetButton = document.getElementById('reset-button');
+  const downloadConfig = document.getElementById('download-config');
+  const uploadConfig = document.querySelector('label[for="upload-config"]');
+  
+  if (resetButton) resetButton.style.opacity = '0';
+  if (downloadConfig) downloadConfig.style.opacity = '0';
+  if (uploadConfig) uploadConfig.style.opacity = '0';
 }
 
 /**
@@ -485,6 +539,14 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.removeItem('bongo-cat-calibration');
     console.log('Calibration reset!');
   }
+  
+  // Initialize auto-hide functionality
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mousedown', handleMouseMove);
+  document.addEventListener('keydown', handleMouseMove);
+  
+  // Start the auto-hide timer
+  handleMouseMove();
   
   if (!loadCalibration()) {
     document.getElementById('calibration-schematic-wrapper').style.display = '';
