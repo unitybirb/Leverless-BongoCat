@@ -10,9 +10,9 @@ A web-based leverless controller visualization tool that displays real-time inpu
   - Standard gamepads
   - Arcade sticks
   - XInput devices
-  - **However**, unless you create new images for other controller types, the visualizaion is leverless specific.
 - **Calibration System**: Interactive calibration process to map your specific controller layout
 - **OBS Integration**: Designed to work seamlessly as a browser source in OBS
+- **Responsive Design**: Adapts to different screen sizes and aspect ratios
 - **Configurable**: Save and load calibration settings
 - **Auto-Hide Interface**: Config buttons automatically fade out after 5 seconds of inactivity for a cleaner interface
 
@@ -29,8 +29,37 @@ leverless-bongo-cat/
             ├── base/         # Button and directional overlays
             ├── arms/         # Arm animation frames
             ├── left/         # Left hand hitbox overlays
-            └── right/        # Right hand hitbox overlays
+                        └── right/        # Right hand hitbox overlays
+  ```
+
+## Downloading the Project
+
+### Option 1: Clone the Repository (Recommended for Developers)
+
+If you have Git installed and want to contribute or stay updated with the latest changes:
+
+```bash
+git clone https://github.com/unitybirb/leverless-bongo-cat.git
+cd leverless-bongo-cat
 ```
+
+### Option 2: Download Release
+
+For users who want a stable version:
+
+1. Go to the [Releases page](https://github.com/unitybirb/leverless-bongo-cat/releases)
+2. Click on the latest release (e.g., "v1.0.1")
+3. Download the source code ZIP file
+4. Extract the ZIP file to your desired location
+
+### Option 3: Download ZIP from Main Branch
+
+For the latest development version:
+
+1. Go to the main repository page
+2. Click the green "Code" button
+3. Select "Download ZIP"
+4. Extract the ZIP file to your desired location
 
 ## Setup Instructions
 
@@ -84,6 +113,7 @@ The calibration supports:
    - Solution: Use XInput mode or gamepad-to-keyboard mappers
    - Alternative: Use Firefox for testing, then capture the window
 2. **No Input Detection**: Ensure the browser source is active and focused
+3. **Performance Issues**: Reduce browser source resolution if needed
 
 ### Browser Compatibility
 - **Chrome/Chromium**: Full support
@@ -103,6 +133,12 @@ Calibration data is stored in browser localStorage:
 - Axis mappings with thresholds
 - Trigger configurations
 - Custom button assignments
+
+### Performance
+- Optimized for 60fps visualization
+- Minimal CPU usage
+- Efficient image loading and caching
+- Responsive input handling
 
 ## Customization
 
