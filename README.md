@@ -10,9 +10,9 @@ A web-based leverless controller visualization tool that displays real-time inpu
   - Standard gamepads
   - Arcade sticks
   - XInput devices
+  - **However**, unless you create new images for other controller types, the visualizaion is leverless specific.
 - **Calibration System**: Interactive calibration process to map your specific controller layout
 - **OBS Integration**: Designed to work seamlessly as a browser source in OBS
-- **Responsive Design**: Adapts to different screen sizes and aspect ratios
 - **Configurable**: Save and load calibration settings
 - **Auto-Hide Interface**: Config buttons automatically fade out after 5 seconds of inactivity for a cleaner interface
 
@@ -84,7 +84,6 @@ The calibration supports:
    - Solution: Use XInput mode or gamepad-to-keyboard mappers
    - Alternative: Use Firefox for testing, then capture the window
 2. **No Input Detection**: Ensure the browser source is active and focused
-3. **Performance Issues**: Reduce browser source resolution if needed
 
 ### Browser Compatibility
 - **Chrome/Chromium**: Full support
@@ -104,12 +103,6 @@ Calibration data is stored in browser localStorage:
 - Axis mappings with thresholds
 - Trigger configurations
 - Custom button assignments
-
-### Performance
-- Optimized for 60fps visualization
-- Minimal CPU usage
-- Efficient image loading and caching
-- Responsive input handling
 
 ## Customization
 
