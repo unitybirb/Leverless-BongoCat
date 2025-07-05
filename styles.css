@@ -11,3 +11,13 @@ img {
   top: 10%;
   left: 20%;
 }
+
+#hitbox-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+#reset-button,
+#download-config,
+label[for="upload-config"] {
+  transition: opacity 0.5s ease-in-out;
+}

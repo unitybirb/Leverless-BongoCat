@@ -1,4 +1,4 @@
-# Leverless Bongo Cat 1.0.0
+# Leverless Bongo Cat 1.0.1
 
 A web-based leverless controller visualization tool that displays real-time input from game controllers, designed for use as a browser source in OBS (Open Broadcaster Software).
 
@@ -14,6 +14,7 @@ A web-based leverless controller visualization tool that displays real-time inpu
 - **OBS Integration**: Designed to work seamlessly as a browser source in OBS
 - **Responsive Design**: Adapts to different screen sizes and aspect ratios
 - **Configurable**: Save and load calibration settings
+- **Auto-Hide Interface**: Config buttons automatically fade out after 5 seconds of inactivity for a cleaner interface
 
 ## File Structure
 
@@ -123,6 +124,12 @@ Calibration data is stored in browser localStorage:
 - Adjust HTML structure in `hitbox-bongocat.html` for layout changes
 
 ## Version History
+
+### 1.0.1
+- Added auto-hide functionality for config buttons (Reset, Download Config, Upload Config)
+- Config buttons fade out completely after 5 seconds of inactivity
+- Smooth 0.5-second transitions for polished user experience
+- Immediate visibility restoration on any user interaction (mouse movement, clicks, keyboard input)
 
 ### 1.0.0
 - Reorganized file structure for better maintainability
