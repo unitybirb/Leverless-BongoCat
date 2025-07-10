@@ -1,4 +1,4 @@
-# Leverless Bongo Cat 1.1.0
+# Leverless Bongo Cat 1.2.0
 
 A web-based visualization tool that displays real-time input from leverless controllers, designed for use as a browser source in OBS (Open Broadcaster Software).
 
@@ -47,6 +47,7 @@ For custom settings and local use:
 
 ## Features
 
+- **NEW in 1.2.0**: Enhanced arm animation logic with "last pressed" behavior and improved neutral state handling
 - **NEW in 1.1.0**: Customizable background color with full HSV/RGB/Hex color picker
 - **Real-time Controller Input Visualization**: Shows button presses and directional inputs
 - **Universal Controller Support**: Works with any leverless device
@@ -111,6 +112,18 @@ leverless-bongo-cat/
 ```
 
 ## Version History
+
+### 1.2.0
+- **Enhanced Animation Logic**: Implemented "last pressed" behavior for both arms and directionals
+- **Immediate Neutral Return**: Arms and hands now return to neutral state instantly when all inputs are released
+- **Independent Input Handling**: Action buttons and directionals are processed independently for better responsiveness
+- **Performance Optimizations**: Removed all delays, cached DOM elements, and batched DOM updates for 60fps performance
+- **Improved State Management**: Added comprehensive input state tracking and validation
+- **Better Error Handling**: Enhanced error handling with performance monitoring and input validation
+- **Configuration Enhancements**: Background color now included in downloadable config with backward compatibility
+- **Visual State Fixes**: Fixed issues where neutral hands wouldn't appear on fresh page load
+- **Code Quality**: Major refactor for maintainability with TypeScript strict mode and comprehensive logging
+- **Initialization Fix**: Resolved duplicate initialization causing console message duplication
 
 ### 1.1.0
 - Added HSV/RGB/Hex color picker
