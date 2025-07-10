@@ -2,6 +2,23 @@
 
 A web-based leverless controller visualization tool that displays real-time input from game controllers, designed for use as a browser source in OBS (Open Broadcaster Software).
 
+## Quick Start
+
+### Option 1: Use GitHub Pages (No Download Required)
+For quick and easy access without any setup, visit:
+https://unitybirb.github.io/Leverless-BongoCat/
+
+This version includes the default Bongo Cat setup and is perfect if you don't need customization.
+
+### Option 2: Download for Local Use/Customization
+If you want to customize the project or run it locally:
+
+1. Download the latest release from the [Releases page](https://github.com/unitybirb/Leverless-BongoCat/releases)
+2. Extract the ZIP file
+3. Open `hitbox-bongocat.html` in your browser
+
+That's it! No server or installation required.
+
 ## Technical Details
 
 ### TypeScript Implementation
@@ -232,3 +249,24 @@ This project is based on the original [Arcade-Bongo-Cat](https://github.com/ROMt
 ## Support
 
 For issues, questions, or feature requests, please open an issue on the project repository.
+
+## OBS Setup
+
+### For GitHub Pages Version
+1. In OBS, add a new "Browser" source
+2. Set the URL to: `https://unitybirb.github.io/Leverless-BongoCat/`
+3. Set Width: 612 and Height: 354
+4. Click "OK" to add the source
+
+### For Local Version
+1. In OBS, add a new "Browser" source
+2. Enable "Local file" checkbox
+3. Click "Browse" and select your `hitbox-bongocat.html` file
+4. Set Width: 612 and Height: 354
+5. Click "OK" to add the source
+
+### Configuring in OBS
+- To customize settings: Right-click the browser source and select "Interact"
+- The config buttons appear at the top-right when you hover over the source
+- Buttons auto-hide after 5 seconds of inactivity
+- You can calibrate your controller, adjust the background color, and save/load configurations
