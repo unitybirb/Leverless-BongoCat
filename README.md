@@ -1,8 +1,24 @@
-# Leverless Bongo Cat 1.0.1
+# Leverless Bongo Cat 1.1.0
 
 A web-based leverless controller visualization tool that displays real-time input from game controllers, designed for use as a browser source in OBS (Open Broadcaster Software).
 
+## Technical Details
+
+### TypeScript Implementation
+- Strict type checking for improved code reliability
+- Interface definitions for all major types:
+  - `ButtonMappings`: Controller button mapping configuration
+  - `CalibrationStep`: Step-by-step calibration process
+  - `AppState`: Application state management
+  - `AxisMapping`: Gamepad axis configuration
+- Non-module architecture for direct browser use
+- Comprehensive type definitions for the Gamepad API
+
+### Designed for use as a browser source in OBS (Open Broadcaster Software).
+
 ## Features
+
+- **NEW in 1.1.0**: Customizable background color with full HSV/RGB/Hex color picker
 
 - **Real-time Controller Input Visualization**: Displays button presses and directional inputs from game controllers
 - **Universal Controller Support**: Works with any controller that supports the Gamepad API, including:
@@ -21,16 +37,19 @@ A web-based leverless controller visualization tool that displays real-time inpu
 ```
 leverless-bongo-cat/
 ├── hitbox-bongocat.html      # Main HTML file
-├── hitbox-controller.js      # Controller logic and calibration
-├── styles.css                # Styling
+├── hitbox-controller.ts      # TypeScript source for controller logic
+├── tsconfig.json            # TypeScript configuration
+├── dist/                    # Compiled JavaScript output
+│   └── hitbox-controller.js # Compiled controller logic
+├── styles.css               # Styling
 └── resources/
     └── img/
         └── bongocat/
-            ├── base/         # Button and directional overlays
-            ├── arms/         # Arm animation frames
-            ├── left/         # Left hand hitbox overlays
-                        └── right/        # Right hand hitbox overlays
-  ```
+            ├── base/        # Button and directional overlays
+            ├── arms/        # Arm animation frames
+            ├── left/        # Left hand hitbox overlays
+            └── right/       # Right hand hitbox overlays
+```
 
 ## Downloading the Project
 
@@ -113,7 +132,6 @@ The calibration supports:
    - Solution: Use XInput mode or gamepad-to-keyboard mappers
    - Alternative: Use Firefox for testing, then capture the window
 2. **No Input Detection**: Ensure the browser source is active and focused
-3. **Performance Issues**: Reduce browser source resolution if needed
 
 ### Browser Compatibility
 - **Chrome/Chromium**: Full support
@@ -134,12 +152,6 @@ Calibration data is stored in browser localStorage:
 - Trigger configurations
 - Custom button assignments
 
-### Performance
-- Optimized for 60fps visualization
-- Minimal CPU usage
-- Efficient image loading and caching
-- Responsive input handling
-
 ## Customization
 
 ### Adding New Controllers
@@ -152,7 +164,48 @@ Calibration data is stored in browser localStorage:
 - Replace images in `resources/img/bongocat/` for visual themes
 - Adjust HTML structure in `hitbox-bongocat.html` for layout changes
 
+## Development Setup
+
+### Prerequisites
+- Node.js and npm installed
+- TypeScript compiler (`npm install -g typescript`)
+
+### Building the Project
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Compile TypeScript:
+```bash
+npx tsc
+```
+
+The TypeScript compiler will watch for changes and recompile automatically. The compiled JavaScript will be output to the `dist` directory.
+
+### Running the Project
+Simply open `hitbox-bongocat.html` in your browser. The project is designed to work without a server, using only client-side code.
+
+For development:
+1. Make changes to `hitbox-controller.ts`
+2. TypeScript will automatically compile to `dist/hitbox-controller.js`
+3. Refresh your browser to see changes
+
+### Project Structure
+- `hitbox-controller.ts`: Main TypeScript source code
+- `dist/hitbox-controller.js`: Compiled JavaScript (do not edit directly)
+- `tsconfig.json`: TypeScript configuration
+  - Configured for non-module output
+  - Targets ES2015+ features
+  - Strict type checking enabled
+
 ## Version History
+
+### 1.1.0
+- Added customizable background color with full HSV/RGB/Hex color picker
+- Complete refactor from JavaScript to TypeScript for improved maintainability and type safety
+- New build system using TypeScript compiler
+- Updated project structure with separate source and distribution directories
 
 ### 1.0.1
 - Added auto-hide functionality for config buttons (Reset, Download Config, Upload Config)
@@ -178,4 +231,4 @@ This project is based on the original [Arcade-Bongo-Cat](https://github.com/ROMt
 
 ## Support
 
-For issues, questions, or feature requests, please open an issue on the project repository. 
+For issues, questions, or feature requests, please open an issue on the project repository.
