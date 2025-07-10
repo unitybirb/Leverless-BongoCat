@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -9,6 +10,14 @@
 
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Main script -->
+  <script src="dist/hitbox-controller.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeApp();
+    });
+  </script>
   
   <style>
     .calibration-overlay {
@@ -185,6 +194,9 @@
         Upload Config
         <input id="upload-config" type="file" accept="application/json" style="display: none;">
       </label>
+      <div id="color-picker-btn" style="background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">
+        Background
+      </div>
     </div>
 
     <!-- Right hand arm overlays -->
@@ -200,8 +212,54 @@
       <img src="resources/img/bongocat/right/right0.png" alt="" srcset="">
     </div>
   </div>
+
+  <!-- Color Picker Popup -->
+  <div id="color-picker-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1e1e1e; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); z-index: 2000;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+      <h3 style="margin: 0; color: white; font-size: 16px;">Color Picker</h3>
+      <div id="close-color-picker" style="cursor: pointer; padding: 5px; color: #999;">✕</div>
+    </div>
+    <div style="display: flex; gap: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div id="color-spectrum" style="width: 200px; height: 200px; background: linear-gradient(to right, #fff, #ff0000); position: relative; cursor: crosshair;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, #000)"></div>
+          <div id="color-picker-cursor" style="position: absolute; width: 10px; height: 10px; border: 2px solid white; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none;"></div>
+        </div>
+        <div style="display: flex; align-items: center;">
+          <div id="hue-slider" style="flex-grow: 1; height: 20px; background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%); cursor: pointer; position: relative;">
+            <div id="hue-cursor" style="position: absolute; width: 4px; height: 100%; background: white; transform: translateX(-50%); pointer-events: none;"></div>
+          </div>
+          <div id="preview-color" style="width: 30px; height: 30px; border: 2px solid #333; margin-left: 10px;"></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; color: white;">
+        <div>
+          <label>Hex</label>
+          <input type="text" id="hex-input" style="width: 80px; background: #333; border: none; color: white; padding: 5px;">
+        </div>
+        <div>
+          <label>RGB</label>
+          <div style="display: flex; gap: 5px;">
+            <input type="number" id="rgb-r" min="0" max="255" style="width: 50px; background: #333; border: none; color: white; padding: 5px;">
+            <input type="number" id="rgb-g" min="0" max="255" style="width: 50px; background: #333; border: none; color: white; padding: 5px;">
+            <input type="number" id="rgb-b" min="0" max="255" style="width: 50px; background: #333; border: none; color: white; padding: 5px;">
+          </div>
+        </div>
+        <div>
+          <label>HSV</label>
+          <div style="display: flex; gap: 5px;">
+            <input type="number" id="hsv-h" min="0" max="360" style="width: 50px; background: #333; border: none; color: white; padding: 5px;">
+            <input type="number" id="hsv-s" min="0" max="100" style="width: 50px; background: #333; border: none; color: white; padding: 5px;">
+            <input type="number" id="hsv-v" min="0" max="100" style="width: 50px; background: #333; border: none; color: white; padding: 5px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 15px;">
+      <button id="reset-color" style="background: #333; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Reset</button>
+      <button id="apply-color" style="background: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Apply</button>
+    </div>
+  </div>
+  <!-- End Color Picker Popup -->
 </body>
-
-<script src="hitbox-controller.js"></script>
-
-</html> 
+</html>

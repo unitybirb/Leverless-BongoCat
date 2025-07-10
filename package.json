@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "express": "^5.1.0",
+    "http-server": "^14.1.1",
+    "typescript": "^5.8.3"
+  },
+  "name": "leverless-bongo-cat",
+  "version": "1.0.0",
+  "description": "A web-based leverless controller visualization tool that displays real-time input from game controllers, designed for use as a browser source in OBS (Open Broadcaster Software).",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node server.js",
+    "dev": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unitybirb/Leverless-BongoCat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/unitybirb/Leverless-BongoCat/issues"
+  },
+  "homepage": "https://github.com/unitybirb/Leverless-BongoCat#readme"
+}
