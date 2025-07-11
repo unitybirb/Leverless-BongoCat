@@ -15,7 +15,21 @@ Perfect for:
 - Default setup
 - No download needed
 
-### Option 2: Download for Local Use/Customization
+
+### Option 2: Use GitHub Pages With Custom Images
+For immediate use with default settings:
+1. Visit: https://unitybirb.github.io/Leverless-BongoCat/
+2. Click on "Use this template" and "Create a new repository"
+3. Go through the steps to create the repository
+4. Clone your new repository
+5. Add your custom images to resources/img/bongocat
+6. Commit and push your changes
+7. In the project settings, enable GitHub pages
+8. Your page should be deployed on https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
+9. Connect your controller
+10. Follow the calibration prompts
+
+### Option 3: Download for Local Use/Customization
 For custom settings and local use:
 
 1. Download the latest release from the [Releases page](https://github.com/unitybirb/leverless-bongo-cat/releases)
@@ -26,17 +40,21 @@ For custom settings and local use:
 
 ## OBS Setup
 
-### Using GitHub Pages Version
+### Using GitHub Pages Version With The Default BongoCat
 1. In OBS, add a new "Browser" source
 2. Set the URL to: `https://unitybirb.github.io/Leverless-BongoCat/`
-3. Set Width: 612 and Height: 354
 4. Click "OK"
+
+5. ### Using GitHub Pages Version With Your Own Repository
+1. In OBS, add a new "Browser" source
+2. Set the URL to: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
+4. Click "OK"
+
 
 ### Using Local Version
 1. In OBS, add a new "Browser" source
 2. Enable "Local file" checkbox
 3. Click "Browse" and select your `hitbox-bongocat.html`
-4. Set Width: 612 and Height: 354
 5. Click "OK"
 
 ### Configuring in OBS
