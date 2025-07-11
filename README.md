@@ -22,7 +22,7 @@ Perfect for:
 ### Option 2: Use GitHub Pages With Custom Images
 For immediate use with default settings:
 1. Visit: https://github.com/unitybirb/Leverless-BongoCat/
-2. Click on "Use this template" and "Create a new repository"
+2. Click on "Use this template" and "Create a new repository" or fork the repository
 3. Go through the steps to create the repository
 4. Clone your new repository
 5. Add your custom images to resources/img/bongocat
