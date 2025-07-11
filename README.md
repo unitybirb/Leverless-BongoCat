@@ -1,3 +1,6 @@
+
+<img width="918" height="503" alt="bongo_cat" src="https://github.com/user-attachments/assets/12cd3846-8482-405e-a9c8-81ccdba37624" />
+
 # Leverless Bongo Cat 1.2.0
 
 A web-based visualization tool that displays real-time input from leverless controllers, designed for use as a browser source in OBS (Open Broadcaster Software).
