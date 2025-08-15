@@ -6,10 +6,10 @@
 A web-based visualization tool that displays real-time input from leverless controllers, designed for use as a browser source in OBS (Open Broadcaster Software).
 
 ## Quick Start Options
-
-### Option 1: Use GitHub Pages (Instant Access)
+git config 
+### Option 1: Use Codeberg Pages (Instant Access)
 For immediate use with default settings:
-1. Visit: https://unitybirb.github.io/Leverless-BongoCat/
+1. Visit: https://unitybirb.codeberg.page/Leverless-BongoCat/@pages/
 2. Connect your controller
 3. Follow the calibration prompts
 
@@ -19,16 +19,16 @@ Perfect for:
 - No download needed
 
 
-### Option 2: Use GitHub Pages With Custom Images
+### Option 2: Use CodeBerg Pages With Custom Images
 For immediate use with default settings:
-1. Visit: https://github.com/unitybirb/Leverless-BongoCat/
+1. Visit: https://codeberg.org/unitybirb/Leverless-BongoCat/
 2. Click on "Use this template" and "Create a new repository"
 3. Go through the steps to create the repository
 4. Clone your new repository
 5. Add your custom images to resources/img/bongocat
 6. Commit and push your changes
 7. In the project settings, enable GitHub pages
-8. Your page should be deployed on https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
+8. Your page should be deployed on https://YOUR_USERNAME.codeberg.page/YOUR_REPO_NAME/@pages/
 9. Connect your controller
 10. Follow the calibration prompts
 
@@ -45,7 +45,7 @@ For custom settings and local use:
 
 ### Using GitHub Pages Version With The Default BongoCat
 1. In OBS, add a new "Browser" source
-2. Set the URL to: `https://unitybirb.github.io/Leverless-BongoCat/`
+2. Set the URL to: `https://unitybirb.codeberg.page/Leverless-BongoCat/@pages/`
 4. Click "OK"
 
 5. ### Using GitHub Pages Version With Your Own Repository
